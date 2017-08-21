@@ -1,0 +1,68 @@
+$(document).ready(function(){
+
+  var tags = ["black women","black girls", "brown girls", "black women","black men", "black boys","black youth", "brown youth"];
+  /*
+    $("button").click(function(){
+        $("p").slideToggle();
+    });
+*/
+    console.log("ready!!");
+
+    function httpGetAsync(theUrl, callback)
+    {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function() {
+            if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+                callback(xmlHttp.responseText);
+        }
+        xmlHttp.open("GET", theUrl, true); // true for asynchronous
+        xmlHttp.send(null);
+    }
+
+    httpGetAsync("https://newsapi.org/v1/articles?source=the-huffington-post&sortBy=top&apiKey=5799268b49274e03b6441d1db15b2fac", callback_huffington);
+
+    function callback_huffington(responseText) {
+        console.log("response:", responseText);
+        $("#paragraph").text(responseText);
+        var json_parsed = $.parseJSON(responseText);
+        console.log(json_parsed);
+
+        // author
+        var author = json_parsed.articles[0].author;
+        console.log(author);
+        $("#author").text(author);
+
+    
+
+        // title
+        var title = json_parsed.articles[0].title;
+        var str = 'a',
+        flag = false;
+
+        switch (str) {
+        case 'a':
+        case 'b':
+        case 'c':
+        flag = true;
+        default:
+}
+
+  if ("") {
+     // do something
+   }
+/*
+        if (title // contains a word in the list tags) {
+          // then put on html page
+        }
+        else {
+           // do nothing
+        }
+        */
+        $("#title").text(title);
+    }
+
+
+
+
+
+});
